@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuperCook</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div class="logo">super<span>cook</span></div>
+    <div class="topbar-right">
+      <button class="topbar-btn">Log in</button>
+      <button class="topbar-btn">Sign up</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">My ingredients</div>
+        <div class="search-wrap">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" id="ing-search" placeholder="Search ingredients..." oninput="filterIngredients(this.value)">
+        </div>
+      </div>
+      <div class="cats" id="cats-container"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="chips-bar" id="chips-bar">
+        <span class="chips-label" id="chips-label">Add ingredients from the left panel</span>
+      </div>
+      <div class="recipes-area">
+        <div id="recipes-top" class="recipes-top" style="display:none">
+          <div class="recipes-count" id="recipes-count"></div>
+          <div class="filter-tabs">
+            <button class="filter-tab active" onclick="setFilter('all', this)">All</button>
+            <button class="filter-tab" onclick="setFilter('can_make', this)">Can make now</button>
+            <button class="filter-tab" onclick="setFilter('missing_1', this)">Missing 1</button>
+          </div>
+        </div>
+        <div class="recipe-grid" id="recipe-grid"></div>
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">&#127859;</div>
+          <div class="empty-title">What's in your kitchen?</div>
+          <div class="empty-sub">Select ingredients on the left and we'll find recipes you can make right now.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recipe Detail Modal -->
+<div id="recipe-modal" class="recipe-modal">
+  <div class="modal-overlay" onclick="closeRecipeModal()"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeRecipeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="recipe-detail-img" id="recipe-detail-img"></div>
+      <div class="recipe-detail-info">
+        <h1 id="recipe-detail-name"></h1>
+        <div class="recipe-detail-meta">
+          <span id="recipe-detail-time"></span>
+          <span id="recipe-detail-servings"></span>
+        </div>
+        
+        <div class="detail-section">
+          <h3>Ingredients</h3>
+          <ul id="recipe-ingredients-list" class="ingredients-list"></ul>
+        </div>
+
+        <div class="detail-section">
+          <h3>Instructions</h3>
+          <ol id="recipe-instructions-list" class="instructions-list"></ol>
+        </div>
+
+        <div class="detail-footer">
+          <button class="btn-primary" id="save-recipe-btn">Save Recipe</button>
+          <button class="btn-secondary" onclick="closeRecipeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
